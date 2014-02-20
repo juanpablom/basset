@@ -98,14 +98,14 @@ class AssetTest extends PHPUnit_Framework_TestCase {
     public function testFiltersAreAppliedToAssets()
     {
         $this->filter->shouldReceive('make')->once()->with('FooFilter')->andReturn($filter = m::mock('Basset\Filter\Filter'));
-        
+
         $filter->shouldReceive('setResource')->once()->with($this->asset)->andReturn(m::self());
         $filter->shouldReceive('getFilter')->once()->andReturn('FooFilter');
 
         $this->asset->apply('FooFilter');
 
         $filters = $this->asset->getFilters();
-        
+
         $this->assertArrayHasKey('FooFilter', $filters->all());
         $this->assertInstanceOf('Basset\Filter\Filter', $filters['FooFilter']);
     }
@@ -124,7 +124,7 @@ class AssetTest extends PHPUnit_Framework_TestCase {
         $this->asset->apply(array('FooFilter', 'BarFilter'));
 
         $filters = $this->asset->getFilters();
-        
+
         $this->assertArrayHasKey('FooFilter', $filters->all());
         $this->assertArrayHasKey('BarFilter', $filters->all());
     }
@@ -147,9 +147,8 @@ class AssetTest extends PHPUnit_Framework_TestCase {
 
     public function testFiltersArePreparedCorrectly()
     {
-        $fooFilter = m::mock('Basset\Filter\Filter', array(m::mock('Illuminate\Log\Writer'), 'FooFilter', array(), 'testing'))->shouldDeferMissing();
-        $fooFilterInstance = m::mock('stdClass, Assetic\Filter\FilterInterface');
-        $fooFilter->shouldReceive('getClassName')->once()->andReturn($fooFilterInstance);
+        $fooFilter = m::mock('Basset\Filter\Filter', array($fooLog = m::mock('Illuminate\Log\Writer'), 'FooFilter', array(), 'testing'))->shouldDeferMissing();
+        $fooFilter->shouldReceive('getClassName')->once()->andReturn(m::mock('stdClass, Assetic\Filter\FilterInterface'));
 
         $barFilter = m::mock('Basset\Filter\Filter', array($barLog = m::mock('Illuminate\Log\Writer'), 'BarFilter', array(), 'testing'))->shouldDeferMissing();
         $barFilter->shouldReceive('getClassName')->once()->andReturn(m::mock('stdClass, Assetic\Filter\FilterInterface'));
@@ -161,8 +160,7 @@ class AssetTest extends PHPUnit_Framework_TestCase {
         $quxFilter->shouldReceive('getClassName')->once()->andReturn(m::mock('stdClass, Assetic\Filter\FilterInterface'));
 
         $vanFilter = m::mock('Basset\Filter\Filter', array(m::mock('Illuminate\Log\Writer'), 'VanFilter', array(), 'testing'))->shouldDeferMissing();
-        $vanFilterInstance = m::mock('stdClass, Assetic\Filter\FilterInterface');
-        $vanFilter->shouldReceive('getClassName')->once()->andReturn($vanFilterInstance);
+        $vanFilter->shouldReceive('getClassName')->once()->andReturn(m::mock('stdClass, Assetic\Filter\FilterInterface'));
 
         $this->asset->apply($fooFilter);
         $this->asset->apply($barFilter)->whenAssetIsJavascript();

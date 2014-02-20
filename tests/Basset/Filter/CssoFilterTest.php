@@ -13,14 +13,13 @@ class CssoFilterTest extends FilterTestCase {
     public function setUp()
     {
         $cssoBin = $this->findExecutable('csso', 'CSSO_BIN');
-        $nodeBin = $this->findExecutable('node', 'NODE_BIN');
 
-        if ( ! $cssoBin or ! $nodeBin)
+        if ( ! $cssoBin )
         {
-            $this->markTestIncomplete('Could not find CSSO or Node executables.');
+            $this->markTestIncomplete('Could not find CSSO. Install with: npm install -g csso.');
         }
 
-        $this->filter = new CssoFilter($cssoBin, $nodeBin);
+        $this->filter = new CssoFilter($cssoBin);
     }
 
 

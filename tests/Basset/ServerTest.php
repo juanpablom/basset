@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Basset\Manifest\Manifest;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Filesystem\Filesystem;
-use Symfony\Component\Routing\RouteCollection;
+use Illuminate\Routing\RouteCollection;
 
 class ServerTest extends PHPUnit_Framework_TestCase {
 
@@ -73,7 +73,7 @@ class ServerTest extends PHPUnit_Framework_TestCase {
     public function testServingDevelopmentCollectionReturnsExpectedHtml()
     {
         $this->app['basset']->shouldReceive(array('offsetExists' => true, 'offsetGet' => $collection = m::mock('Basset\Collection')))->with('foo');
-        
+
         $this->app['config']->shouldReceive('get')->once()->with('basset::production')->andReturn('prod');
 
         $this->app['basset.builder']->shouldReceive('buildAsDevelopment')->once()->with($collection, 'stylesheets');
@@ -111,7 +111,7 @@ class ServerTest extends PHPUnit_Framework_TestCase {
     public function testRawAssetsAreServedBeforeBuiltCollectionHtml()
     {
         $this->app['basset']->shouldReceive(array('offsetExists' => true, 'offsetGet' => $collection = m::mock('Basset\Collection')))->with('foo');
-        
+
         $this->app['config']->shouldReceive('get')->once()->with('basset::production')->andReturn('testing');
 
         $collection->shouldReceive('getAssetsOnlyRaw')->with('stylesheets')->andReturn(array($asset = m::mock('Basset\Asset')));
@@ -133,7 +133,7 @@ class ServerTest extends PHPUnit_Framework_TestCase {
     public function testServingCollectionsWithCustomFormat()
     {
         $this->app['basset']->shouldReceive(array('offsetExists' => true, 'offsetGet' => $collection = m::mock('Basset\Collection')))->with('foo');
-        
+
         $this->app['config']->shouldReceive('get')->once()->with('basset::production')->andReturn('testing');
 
         $collection->shouldReceive('getAssetsOnlyRaw')->with('stylesheets')->andReturn(array());
