@@ -1,5 +1,5 @@
 {
-    "name": "jasonlewis/basset",
+    "name": "etrepat/basset",
     "description": "A better asset management package for Laravel.",
     "keywords": ["assets", "basset", "laravel"],
     "license": "BSD-2-Clause",
@@ -7,6 +7,10 @@
         {
             "name": "Jason Lewis",
             "email": "jason.lewis1991@gmail.com"
+        },
+        {
+            "name": "Estanislau Trepat",
+            "email": "estanis@etrepat.com"
         }
     ],
     "require": {
@@ -23,10 +27,6 @@
         "illuminate/support": "4.1.*",
         "symfony/process": "2.4.*"
     },
-    "suggest": {
-        "aws/aws-sdk-php": "Deploy static assets directly to your S3 buckets.",
-        "rackspace/php-cloudfiles": "Deploy static assets directly to your Cloud Files container."
-    },
     "autoload": {
         "psr-0": {
             "Basset": "src/"
@@ -35,11 +35,6 @@
             "tests/Cases/FilterTestCase.php"
         ],
         "files": ["src/helpers.php"]
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "4.0-dev"
-        }
     },
     "minimum-stability": "dev"
 }
