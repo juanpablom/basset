@@ -197,7 +197,7 @@ class AssetTest extends PHPUnit_Framework_TestCase {
 
         $config = m::mock('Illuminate\Config\Repository');
 
-        $this->files->shouldReceive('getRemote')->once()->with('path/to/public/foo/bar.sass')->andReturn($contents);
+        $this->files->shouldReceive('get')->once()->with('path/to/public/foo/bar.sass')->andReturn($contents);
 
         $this->asset->apply($filter);
 
