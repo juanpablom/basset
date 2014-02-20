@@ -18,7 +18,7 @@ class BassetServiceProvider extends ServiceProvider {
      *
      * @var string
      */
-    const VERSION = '4.0.1';
+    const VERSION = '4.0.2';
 
     /**
      * Indicates if loading of the provider is deferred.
