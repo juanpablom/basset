@@ -1,3 +1,6 @@
+#### v4.0.2
+- Fix `Asset::prepareFilters()` method to work properly.
+
 #### v4.0.1
 - Change `composer.json` dependencies to make it compatible with Laravel 4.1.
 - Change deprecated `FileSystem::getRemote()` calls to `FileSystem::get()`.
