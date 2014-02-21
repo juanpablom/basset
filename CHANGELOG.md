@@ -1,3 +1,8 @@
+#### v4.0.3
+- Fix `Manifest::all()` to return an array instead of a `Illuminate\Support\Collection`
+object. This fixes `FileSystemCleaner` operations and the `--tidy-up` command
+which were using `array_keys` on that method output.
+
 #### v4.0.2
 - Fix `Asset::prepareFilters()` method to work properly.
 
