@@ -111,7 +111,7 @@ class Manifest {
      */
     public function all()
     {
-        return $this->entries;
+        return $this->entries->all();
     }
 
     /**
