@@ -6,7 +6,6 @@ use Assetic\Asset\StringAsset;
 use Basset\Factory\FactoryManager;
 use Assetic\Filter\FilterInterface;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Collection;
 
 class Asset extends Filterable {
 
@@ -26,7 +25,7 @@ class Asset extends Filterable {
 
     /**
      * Application environment.
-     * 
+     *
      * @var string
      */
     protected $appEnvironment;
@@ -61,21 +60,21 @@ class Asset extends Filterable {
 
     /**
      * Assets cached last modified time.
-     * 
+     *
      * @var int
      */
     protected $lastModified;
 
     /**
      * Group the asset belongs to, either stylesheets or javascripts.
-     * 
+     *
      * @var string
      */
     protected $group;
 
     /**
      * Array of allowed asset extensions.
-     * 
+     *
      * @var array
      */
     protected $allowedExtensions = array(
@@ -96,7 +95,7 @@ class Asset extends Filterable {
     public function __construct(Filesystem $files, FactoryManager $factory, $appEnvironment, $absolutePath, $relativePath)
     {
         parent::__construct();
-        
+
         $this->files = $files;
         $this->factory = $factory;
         $this->appEnvironment = $appEnvironment;
@@ -126,7 +125,7 @@ class Asset extends Filterable {
 
     /**
      * Get the build path to the asset.
-     * 
+     *
      * @return string
      */
     public function getBuildPath()
@@ -150,7 +149,7 @@ class Asset extends Filterable {
 
     /**
      * Get the last modified time of the asset.
-     * 
+     *
      * @return int
      */
     public function getLastModified()
@@ -259,7 +258,7 @@ class Asset extends Filterable {
 
     /**
      * Set the assets group.
-     * 
+     *
      * @param  string  $group
      * @return \Basset\Asset
      */
@@ -287,7 +286,7 @@ class Asset extends Filterable {
 
     /**
      * Detect the group from the content type using cURL.
-     * 
+     *
      * @return null|string
      */
     protected function detectGroupFromContentType()
@@ -317,7 +316,7 @@ class Asset extends Filterable {
 
     /**
      * Detect group from the assets extension.
-     * 
+     *
      * @return string
      */
     protected function detectGroupFromExtension()
@@ -335,7 +334,7 @@ class Asset extends Filterable {
 
     /**
      * A raw asset is just excluded from the build process.
-     * 
+     *
      * @return \Basset\Asset
      */
     public function raw()
@@ -347,7 +346,7 @@ class Asset extends Filterable {
 
     /**
      * Sets the asset to be served raw when the application is running in a given environment.
-     * 
+     *
      * @param  string|array  $environment
      * @return \Basset\Asset
      */
@@ -365,7 +364,7 @@ class Asset extends Filterable {
 
     /**
      * Determines if the asset is to be served raw.
-     * 
+     *
      * @return bool
      */
     public function isRaw()
@@ -406,13 +405,18 @@ class Asset extends Filterable {
      */
     public function prepareFilters($production = false)
     {
-        $filters = Collection::make($this->filters->all())->transform(function($filter) use ($production)
+        // Clone internal filters collection
+        $filters = \Illuminate\Support\Collection::make($this->filters->all());
+
+        // Transform elements into Filter instances
+        $filters = $filters->transform(function($filter) use ($production)
         {
             $filter->setProduction($production);
 
             return $filter->getInstance();
         });
 
+        // Only return those that inherit from FilterInterface
         return $filters->filter(function($filter) { return $filter instanceof FilterInterface; });
     }
 
