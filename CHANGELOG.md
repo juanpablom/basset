@@ -1,3 +1,7 @@
+#### v4.0.4
+- Change `Asset::prepareFilters` code to avoid name resolution conflicts under
+some situations.
+
 #### v4.0.3
 - Fix `Manifest::all()` to return an array instead of a `Illuminate\Support\Collection`
 object. This fixes `FileSystemCleaner` operations and the `--tidy-up` command
