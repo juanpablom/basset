@@ -20,7 +20,9 @@ with the latest version of the [Laravel 4 framework](http://laravel.com/), fix
 some bugs, and allow me to upgrade some applications which rely on this package
 to the latest [Laravel 4 framework](http://laravel.com/).
 
-Status: **Working** without major issues with *[Laravel 4.1](http://laravel.com)*.
+Status:
+- **Working** without major issues with *[Laravel 4.1](http://laravel.com)*.
+- Should work with *[Laravel 4.2](http://laravel.com)* (more feedback needed).
 
 Please, take a look at the [CHANGELOG.md](https://github.com/etrepat/basset/blob/master/CHANGELOG.md),
 or browse the commits to know what has changed from the original.

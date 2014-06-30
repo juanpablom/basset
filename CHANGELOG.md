@@ -1,3 +1,6 @@
+#### v4.0.5
+- [#1] Implement `getDefaultDriver` on `FactoryManager` for Laravel 4.2 compatibility. Thanks to [@barryvdh](https://github.com/barryvdh).
+
 #### v4.0.4
 - Change `Asset::prepareFilters` code to avoid name resolution conflicts under
 some situations.
