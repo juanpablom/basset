@@ -45,19 +45,65 @@ class Builder {
     /**
      * Create a new builder instance.
      *
-     * @param  \Illuminate\Filesystem\Filesystem  $files
-     * @param  \Basset\Manifest\Manifest  $manifest
-     * @param  \Basset\Builder\FilesystemCleaner  $cleaner
-     * @param  string  $buildPath
-     * @return void
+     * @param Filesystem $files
+     * @param Manifest   $manifest
+     * @param            $buildPath
      */
     public function __construct(Filesystem $files, Manifest $manifest, $buildPath)
     {
         $this->files = $files;
         $this->manifest = $manifest;
         $this->buildPath = $buildPath;
+        $this->buildNamePattern = \Config('basset::build_name_pattern');
 
         $this->makeBuildPath();
+    }
+
+    /**
+     * Builds a filename fingerprint from a pattern if one exists.
+     *
+     * String Replacement Pattern Pieces
+     * ----------------------------------
+     *      [collection-name] = Name of the collection
+     *      [date:m-d-Y] = Tell it to use the PHP date-time formatting in the filename. Scructure is "date:" followed
+     *                   by the standard php date/time formatting (see http://us3.php.net/manual/en/function.date.php)
+     *
+     * Usage:
+     *      You put in a filename string that contains string replace patterns wrapped in square brackets. If you do not
+     *      include the collection name replacement pattern somewhere in the pattern string then it will be prepended to
+     *      filename.
+     *
+     *
+     * @param Collection $collection
+     * @param String     $group
+     * @param String     $build
+     *
+     * @return String
+     */
+    public function buildFingerprint(Collection $collection, $group, $build)
+    {
+        //Setup everything we need
+        $extension = $collection->getExtension($group);
+        $identifier = $collection->getIdentifier();
+        $pattern = $this->buildNamePattern;
+
+        if ( empty($pattern) ) {
+            //If we have no pattern to build from then we will just do what we always did in the past.
+            return $identifier . '-' . md5($build) . '.' . $extension;
+        }
+
+        //String replace pattern for the collection name
+        $fingerprint = str_ireplace('[collection-name]', $collection, $pattern);
+
+        //Check for a date pattern and grab it if we need
+        if ( $dateToken = preg_match('/\[date:.+]/i', $fingerprint) ) {
+            $format = str_ireplace(array('[date:', ']'), '', $dateToken); //Extracts the date format to be used
+            $formattedDate = date($format); //Create the formatted date
+
+            $fingerprint = preg_replace('/\[date:.+]/i', $formattedDate, $fingerprint);
+        }
+
+        return $fingerprint;
     }
 
     /**
@@ -90,9 +136,8 @@ class Builder {
             throw new BuildNotRequiredException;
         }
 
-        $fingerprint = $identifier.'-'.md5($build).'.'.$collection->getExtension($group);
-
-        $path = $this->buildPath.'/'.$fingerprint;
+        $fingerprint = $this->buildFingerprint($collection, $group, $build);
+        $path = $this->buildPath . '/' . $fingerprint;
 
         // If the collection has already been built and we're not forcing the build then we'll throw
         // the exception here as we don't need to rebuild the collection.
@@ -103,7 +148,6 @@ class Builder {
         else
         {
             $this->files->put($path, $this->gzip($build));
-
             $entry->setProductionFingerprint($group, $fingerprint);
         }
     }

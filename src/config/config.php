@@ -91,6 +91,23 @@ return array(
 
     'build_path' => 'builds',
 
+    /**
+     * String Replacement Pattern Pieces
+     * ----------------------------------
+     *      [collection-name] = Name of the collection
+     *      [date:m-d-Y] = Tell it to use the PHP date-time formatting in the filename. Scructure is "date:" followed
+     *                   by the standard php date/time formatting (see http://us3.php.net/manual/en/function.date.php)
+     *
+     * Usage:
+     *      You put in a filename string that contains string replace patterns wrapped in square brackets. If you do not
+     *      include the collection name replacement pattern somewhere in the pattern string then it will be prepended to
+     *      filename.
+     *
+     * Suggested format: [collection-name]-[date:m-d-Y]-release_xx
+     *
+     */
+    'build_name_pattern' => '[collection-name]-[date:m-d-Y]-release1',
+
     /*
     |--------------------------------------------------------------------------
     | Debug
