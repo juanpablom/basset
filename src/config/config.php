@@ -108,7 +108,7 @@ return array(
      *      [collection-name]-[date:Y-m-d]
      *      [collection-name]-release_xx
      */
-    'build_name_pattern' => '[collection-name]-release1',
+    'build_name_pattern' => '',
 
     /*
     |--------------------------------------------------------------------------

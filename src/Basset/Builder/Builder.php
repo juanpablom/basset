@@ -86,8 +86,10 @@ class Builder {
         $identifier = $collection->getIdentifier();
         $pattern = $this->buildNamePattern;
 
+        /**
+         * If we don't have a pattern to follow then we will do it the old fashioned way.
+         */
         if ( empty($pattern) ) {
-            //If we have no pattern to build from then we will just do what we always did in the past.
             return $identifier . '-' . md5($build) . '.' . $extension;
         }
 
@@ -114,6 +116,9 @@ class Builder {
 
             $fingerprint = preg_replace($dateTokenRegX, $formattedDate, $fingerprint);
         }
+
+        //Add the file extension
+        $fingerprint .= '.' . $extension;
 
         return $fingerprint;
     }
