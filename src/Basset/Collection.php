@@ -19,9 +19,8 @@ class Collection {
     /**
      * Create a new collection instance.
      *
-     * @param  string  $identifier
-     * @param  \Basset\Directory  $directory
-     * @return void
+     * @param Directory $directory
+     * @param           $identifier
      */
     public function __construct(Directory $directory, $identifier)
     {

@@ -201,7 +201,7 @@ class BassetServiceProvider extends ServiceProvider {
     {
         $this->app['basset.builder'] = $this->app->share(function($app)
         {
-            return new Builder($app['files'], $app['basset.manifest'], $app['basset.path.build']);
+            return new Builder($app['files'], $app['basset.manifest'], $app['basset.path.build'], $this->app['config']->get('basset::build_name_pattern'));
         });
 
         $this->app['basset.builder.cleaner'] = $this->app->share(function($app)

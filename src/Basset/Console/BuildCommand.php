@@ -42,7 +42,7 @@ class BuildCommand extends Command {
 
     /**
      * Basset filesystem cleaner instance.
-     * 
+     *
      * @var \Basset\Builder\FilesystemCleaner
      */
     protected $cleaner;
@@ -50,10 +50,9 @@ class BuildCommand extends Command {
     /**
      * Create a new basset compile command instance.
      *
-     * @param  \Basset\Environment  $environment
-     * @param  \Basset\Builder\Builder  $builder
-     * @param  \Basset\Builder\FilesystemCleaner  $cleaner
-     * @return void
+     * @param Environment       $environment
+     * @param Builder           $builder
+     * @param FilesystemCleaner $cleaner
      */
     public function __construct(Environment $environment, Builder $builder, FilesystemCleaner $cleaner)
     {
@@ -109,7 +108,7 @@ class BuildCommand extends Command {
 
     /**
      * Dynamically handle calls to the build methods.
-     * 
+     *
      * @param  string  $method
      * @param  array  $parameters
      * @return mixed

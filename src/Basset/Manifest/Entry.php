@@ -25,7 +25,6 @@ class Entry implements JsonableInterface, ArrayableInterface {
      *
      * @param  array  $fingerprints
      * @param  array  $development
-     * @return void
      */
     public function __construct($fingerprints = array(), $development = array())
     {

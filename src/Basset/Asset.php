@@ -85,12 +85,11 @@ class Asset extends Filterable {
     /**
      * Create a new asset instance.
      *
-     * @param  \Illuminate\Filesystem\Filesystem  $files
-     * @param  \Basset\Factory\FactoryManager  $factory
-     * @param  string  $appEnvironment
-     * @param  string  $absolutePath
-     * @param  string  $relativePath
-     * @return void
+     * @param Filesystem     $files
+     * @param FactoryManager $factory
+     * @param                $appEnvironment
+     * @param                $absolutePath
+     * @param                $relativePath
      */
     public function __construct(Filesystem $files, FactoryManager $factory, $appEnvironment, $absolutePath, $relativePath)
     {

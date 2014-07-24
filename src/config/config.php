@@ -103,10 +103,12 @@ return array(
      *      include the collection name replacement pattern somewhere in the pattern string then it will be prepended to
      *      filename.
      *
-     * Suggested format: [collection-name]-[date:m-d-Y]-release_xx
-     *
+     * Example formats:
+     *      [collection-name]-[date:m-d-Y]-release_xx
+     *      [collection-name]-[date:Y-m-d]
+     *      [collection-name]-release_xx
      */
-    'build_name_pattern' => '[collection-name]-[date:m-d-Y]-release1',
+    'build_name_pattern' => '[collection-name]-release1',
 
     /*
     |--------------------------------------------------------------------------

@@ -16,45 +16,44 @@ class Builder {
 
     /**
      * Basset manifest instance.
-     * 
+     *
      * @var \Basset\Manifest\Manifest
      */
     protected $manifest;
 
     /**
      * Path to built collections.
-     * 
+     *
      * @var string
      */
     protected $buildPath;
 
     /**
      * Indicates if the build will be pre-gzipped.
-     * 
+     *
      * @var bool
      */
     protected $gzip = false;
 
     /**
      * Indicates if the build will be forced.
-     * 
+     *
      * @var bool
      */
     protected $force = false;
 
     /**
-     * Create a new builder instance.
-     *
      * @param Filesystem $files
      * @param Manifest   $manifest
      * @param            $buildPath
+     * @param            $buildNamePattern
      */
-    public function __construct(Filesystem $files, Manifest $manifest, $buildPath)
+    public function __construct(Filesystem $files, Manifest $manifest, $buildPath, $buildNamePattern = '')
     {
         $this->files = $files;
         $this->manifest = $manifest;
         $this->buildPath = $buildPath;
-        $this->buildNamePattern = \Config('basset::build_name_pattern');
+        $this->buildNamePattern = $buildNamePattern;
 
         $this->makeBuildPath();
     }
@@ -92,15 +91,28 @@ class Builder {
             return $identifier . '-' . md5($build) . '.' . $extension;
         }
 
+        /**
+         * Tokens and token operations.
+         *
+         * These are the token strings and regular expressions we use to build the collection fingerprints.
+         */
+        $collectionToken = '[collection-name]';
+        $dateTokenRegX = '/\[date:.+]/i';
+
         //String replace pattern for the collection name
-        $fingerprint = str_ireplace('[collection-name]', $collection, $pattern);
+        if (stristr($pattern, $collectionToken)) {
+            $fingerprint = str_ireplace($collectionToken, $identifier, $pattern);
+        } else {
+            $fingerprint = $identifier . '-' . $pattern;
+        }
 
         //Check for a date pattern and grab it if we need
-        if ( $dateToken = preg_match('/\[date:.+]/i', $fingerprint) ) {
+        if ( preg_match($dateTokenRegX, $fingerprint, $matches) ) {
+            $dateToken = $matches[0];
             $format = str_ireplace(array('[date:', ']'), '', $dateToken); //Extracts the date format to be used
             $formattedDate = date($format); //Create the formatted date
 
-            $fingerprint = preg_replace('/\[date:.+]/i', $formattedDate, $fingerprint);
+            $fingerprint = preg_replace($dateTokenRegX, $formattedDate, $fingerprint);
         }
 
         return $fingerprint;
@@ -108,7 +120,7 @@ class Builder {
 
     /**
      * Build a production collection.
-     * 
+     *
      * @param  \Basset\Collection  $collection
      * @param  string  $group
      * @return void
@@ -154,7 +166,7 @@ class Builder {
 
     /**
      * Build a development collection.
-     * 
+     *
      * @param  \Basset\Collection  $collection
      * @param  string  $group
      * @return void
@@ -210,7 +222,7 @@ class Builder {
 
     /**
      * Determine if the collections definition has changed when compared to the manifest.
-     * 
+     *
      * @param  \Illuminate\Support\Collection  $assets
      * @param  \Basset\Manifest\Entry  $entry
      * @param  string  $group
@@ -241,7 +253,7 @@ class Builder {
 
     /**
      * Make the build path if it does not exist.
-     * 
+     *
      * @return void
      */
     protected function makeBuildPath()
@@ -255,7 +267,7 @@ class Builder {
     /**
      * If Gzipping is enabled the the zlib extension is loaded we'll Gzip the contents
      * with a maximum compression level of 9.
-     * 
+     *
      * @param  string  $contents
      * @return string
      */
@@ -271,7 +283,7 @@ class Builder {
 
     /**
      * Set built collections to be gzipped.
-     * 
+     *
      * @param  bool  $gzip
      * @return \Basset\Builder\Builder
      */
