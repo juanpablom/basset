@@ -95,7 +95,7 @@ return array(
      * String Replacement Pattern Pieces
      * ----------------------------------
      *      [collection-name] = Name of the collection
-     *      [date:m-d-Y] = Tell it to use the PHP date-time formatting in the filename. Scructure is "date:" followed
+     *      [date:m-d-Y] = Tell it to use the PHP date-time formatting in the filename. Structure is "date:" followed
      *                   by the standard php date/time formatting (see http://us3.php.net/manual/en/function.date.php)
      *
      * Usage:
