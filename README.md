@@ -24,7 +24,7 @@ Status:
 - **Working** without major issues with *[Laravel 4.1](http://laravel.com)*.
 - Should work with *[Laravel 4.2](http://laravel.com)* (more feedback needed).
 
-Please, take a look at the [CHANGELOG.md](https://github.com/etrepat/basset/blob/master/CHANGELOG.md),
+Please, take a look at the [CHANGELOG.md](https://github.com/pthurmond/basset/blob/master/CHANGELOG.md),
 or browse the commits to know what has changed from the original.
 
 ### Installation
@@ -35,7 +35,7 @@ or browse the commits to know what has changed from the original.
 To get the latest version of Basset simply require it in your `composer.json`
 file:
 
-    "etrepat/basset": "~4.0.1"
+    "pthurmond/basset": "~4.0.1"
 
 You'll then need to run `composer install` to download it and have the autoloader
 updated.
