@@ -11,6 +11,10 @@
         {
             "name": "Estanislau Trepat",
             "email": "estanis@etrepat.com"
+        },
+        {
+            "name": "Patrick Thurmond",
+            "email": "patrick.thurmond@gmail.com"
         }
     ],
     "require": {
