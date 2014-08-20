@@ -1,3 +1,6 @@
+#### v4.0.6
+- [#3] Add build name patterns for easy use with complex server environments. Thanks to [@pthurmond](https://github.com/pthurmond).
+
 #### v4.0.5
 - [#1] Implement `getDefaultDriver` on `FactoryManager` for Laravel 4.2 compatibility. Thanks to [@barryvdh](https://github.com/barryvdh).
 
