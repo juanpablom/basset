@@ -22,14 +22,14 @@
         "kriswallsmith/assetic": "1.1.*"
     },
     "require-dev": {
-        "mockery/mockery": ">=0.7.2",
-        "illuminate/config": "4.1.*",
-        "illuminate/console": "4.1.*",
-        "illuminate/filesystem": "4.1.*",
-        "illuminate/log": "4.1.*",
-        "illuminate/routing": "4.1.*",
-        "illuminate/support": "4.1.*",
-        "symfony/process": "2.4.*"
+        "mockery/mockery": "~0.9",
+        "illuminate/config": "~4.0",
+        "illuminate/console": "~4.0",
+        "illuminate/filesystem": "~4.0",
+        "illuminate/log": "~4.0",
+        "illuminate/routing": "~4.0",
+        "illuminate/support": "~4.0",
+        "symfony/process": "~2.4"
     },
     "autoload": {
         "psr-0": {
