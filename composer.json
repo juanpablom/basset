@@ -1,5 +1,5 @@
 {
-    "name": "pthurmond/basset",
+    "name": "etrepat/basset",
     "description": "A better asset management package for Laravel.",
     "keywords": ["assets", "basset", "laravel"],
     "license": "BSD-2-Clause",
@@ -11,10 +11,6 @@
         {
             "name": "Estanislau Trepat",
             "email": "estanis@etrepat.com"
-        },
-        {
-            "name": "Patrick Thurmond",
-            "email": "patrick.thurmond@gmail.com"
         }
     ],
     "require": {

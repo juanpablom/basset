@@ -50,7 +50,7 @@ class BassetServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        $this->package('pthurmond/basset', 'basset', __DIR__.'/../');
+        $this->package('etrepat/basset', 'basset', __DIR__.'/../');
 
         // Tell the logger to use a rotating files setup to log problems encountered during
         // Bassets operation but only when debugging is enabled.

@@ -1,6 +1,6 @@
 ## Basset for Laravel 4
 
-[![Build Status](https://secure.travis-ci.org/pthurmond/basset.png)](http://travis-ci.org/pthurmond/basset)
+[![Build Status](https://secure.travis-ci.org/etrepat/basset.png)](http://travis-ci.org/etrepat/basset)
 
 Basset is a better asset management package for the Laravel framework. Basset
 shares the same philosophy as Laravel. Development should be an enjoyable and
@@ -24,18 +24,18 @@ Status:
 - **Working** without major issues with *[Laravel 4.1](http://laravel.com)*.
 - Should work with *[Laravel 4.2](http://laravel.com)* (more feedback needed).
 
-Please, take a look at the [CHANGELOG.md](https://github.com/pthurmond/basset/blob/master/CHANGELOG.md),
+Please, take a look at the [CHANGELOG.md](https://github.com/etrepat/basset/blob/master/CHANGELOG.md),
 or browse the commits to know what has changed from the original.
 
 ### Installation
 
-- [Basset on Packagist](https://packagist.org/packages/pthurmond/basset)
-- [Basset on GitHub](https://github.com/pthurmond/basset)
+- [Basset on Packagist](https://packagist.org/packages/etrepat/basset)
+- [Basset on GitHub](https://github.com/etrepat/basset)
 
 To get the latest version of Basset simply require it in your `composer.json`
 file:
 
-    "pthurmond/basset": "~4.0.1"
+    "etrepat/basset": "~4.0.1"
 
 You'll then need to run `composer install` to download it and have the autoloader
 updated.
@@ -45,7 +45,9 @@ application. Open up `app/config/app.php` and find the `providers` key.
 
 ```php
 'providers' => array(
+
     'Basset\BassetServiceProvider'
+
 )
 ```
 
@@ -55,7 +57,9 @@ your `app/config/app.php` file.
 
 ```php
 'aliases' => array(
+
     'Basset' => 'Basset\Facade'
+
 )
 ```
 
@@ -65,4 +69,4 @@ your `app/config/app.php` file.
 
 ### Changes
 
-Please see the [CHANGELOG.md](https://github.com/pthurmond/basset/blob/master/CHANGELOG.md) file.
+Please see the [CHANGELOG.md](https://github.com/etrepat/basset/blob/master/CHANGELOG.md) file.
