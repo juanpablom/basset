@@ -1,3 +1,6 @@
+#### v4.0.7
+- Fix issue with test case autoloading while having the full test-suite under `.gitattributes export-ignore`.
+
 #### v4.0.6
 - [#3] Add build name patterns for easy use with complex server environments. Thanks to [@pthurmond](https://github.com/pthurmond).
 
