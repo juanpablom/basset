@@ -35,13 +35,7 @@
     "autoload": {
         "psr-0": {
             "Basset": "src/"
-        },
-        "files": ["src/helpers.php"]
-    },
-    "autoload-dev": {
-        "classmap": [
-            "tests/Cases/FilterTestCase.php"
-        ]
+        }
     },
     "minimum-stability": "dev"
 }
